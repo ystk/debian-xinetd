@@ -1,0 +1,29 @@
+Source: xinetd
+Section: net
+Priority: extra
+Maintainer: Pierre Habouzit <madcoder@debian.org>
+Standards-Version: 3.7.3
+Build-Depends: debhelper (>> 5.0.0), libwrap0-dev, autotools-dev, lsb-base
+Vcs-Git: git://git.madism.org/packages/xinetd.git
+Vcs-Browser: http://git.madism.org/?p=packages/xinetd.git
+Homepage: http://www.xinetd.org
+
+Package: xinetd
+Architecture: any
+Depends: ${shlibs:Depends}, netbase, update-inetd
+Provides: inet-superserver
+Conflicts: inet-superserver
+Recommends: sysklogd | system-log-daemon, logrotate
+Description: replacement for inetd with many enhancements
+ xinetd has access control mechanisms, extensive logging capabilities,
+ the ability to make services available based on time, and can place
+ limits on the number of servers that can be started, among other things.
+ .
+ It has the ability to redirect TCP streams to a remote host and port.
+ This is useful for those of that use IP masquerading, or NAT, and want
+ to be able to reach your internal hosts.
+ .
+ It also has the ability to bind specific services to specific interfaces.
+ This is useful when you want to make services available for your internal
+ network, but not the rest of the world. Or to have a different service
+ running on the same port, but different interfaces.

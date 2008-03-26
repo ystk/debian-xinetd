@@ -1,0 +1,25 @@
+From f98b6a9dd2ad4b8e82d34470139174e1331c90b8 Mon Sep 17 00:00:00 2001
+From: Pierre Habouzit <madcoder@debian.org>
+Date: Mon, 26 Nov 2007 16:02:48 +0100
+Subject: [PATCH] Fix xinetd.log.man installation path.
+
+---
+ Makefile.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 7511efd..f766383 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -80,7 +80,7 @@ install: build
+ 	$(INSTALL_CMD) -m 755 xinetd/itox $(DAEMONDIR)
+ 	$(INSTALL_CMD) -m 755 $(SRCDIR)/xinetd/xconv.pl $(DAEMONDIR)
+ 	$(INSTALL_CMD) -m 644 $(SRCDIR)/xinetd/xinetd.conf.man $(MANDIR)/man5/xinetd.conf.5
+-	$(INSTALL_CMD) -m 644 $(SRCDIR)/xinetd/xinetd.log.man $(MANDIR)/man8/xinetd.log.8
++	$(INSTALL_CMD) -m 644 $(SRCDIR)/xinetd/xinetd.log.man $(MANDIR)/man5/xinetd.log.5
+ 	$(INSTALL_CMD) -m 644 $(SRCDIR)/xinetd/xinetd.man $(MANDIR)/man8/xinetd.8
+ 	$(INSTALL_CMD) -m 644 $(SRCDIR)/xinetd/itox.8 $(MANDIR)/man8/itox.8
+ 	$(INSTALL_CMD) -m 644 $(SRCDIR)/xinetd/xconv.pl.8 $(MANDIR)/man8/xconv.pl.8
+-- 
+1.5.3.6.2040.g15e6
+

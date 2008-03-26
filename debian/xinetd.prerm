@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+    invoke-rc.d xinetd stop
+elif [ -x /etc/init.d/xinetd ]; then
+    /etc/init.d/xinetd stop
+fi
+
+if [ "$1" = "remove" ]; then
+    echo "Note: all inetd services have been terminated."
+fi
+
+#DEBHELPER#

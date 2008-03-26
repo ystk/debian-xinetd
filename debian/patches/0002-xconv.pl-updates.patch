@@ -1,0 +1,88 @@
+From 230b222e62166df16f21aff3859dafab3cd3cae7 Mon Sep 17 00:00:00 2001
+From: Pierre Habouzit <madcoder@debian.org>
+Date: Mon, 26 Nov 2007 16:01:43 +0100
+Subject: [PATCH] xconv.pl updates
+
+---
+ xinetd/xconv.pl |   37 ++++++++++++++++++++++++++++++++++++-
+ 1 files changed, 36 insertions(+), 1 deletions(-)
+
+diff --git a/xinetd/xconv.pl b/xinetd/xconv.pl
+index cc58868..6c0a71d 100755
+--- a/xinetd/xconv.pl
++++ b/xinetd/xconv.pl
+@@ -16,8 +16,16 @@ print_defaults;
+ 
+ while( <STDIN> ) {
+ 
++	$disable = 0;					# Default to 'enable'
++
+ 	chomp;
+ 
++	# Check for disable before we check for comments
++	if (m/^\#<off>\#/i) {
++		s/^.*?\s//;
++		$disable = 1;
++	}
++
+ 	# Remove comment lines
+ 	if( grep /^#/, $_ ) {
+ 		next;
+@@ -37,9 +45,12 @@ while( <STDIN> ) {
+ 
+ 	print "service $command[0]\n";
+ 	print "{\n";
+-	print "\tflags       = NAMEINARGS\n";
+ 	print "\tsocket_type = $command[1]\n";
+ 	print "\tprotocol    = $command[2]\n";
++	if( $command[0] =~ /^\d+$/ ) {
++		print "\tport        = $command[0]\n";
++		print "\ttype        = UNLISTED\n";
++	}
+ 	if( grep /no/, $command[3] ) {
+ 		print "\twait        = no\n";
+ 	} else {
+@@ -50,9 +61,28 @@ while( <STDIN> ) {
+ 	if( defined $user[1] ) {
+ 		print "\tgroup       = $user[1]\n";
+ 	}
++	# Amanda is a special case, it needs this, see
++	# http://www.amanda.org/docs/install.html and 
++	# Bug report #167367
++	if ( $command[6] =~ /(amandad|amindexd|amidxtaped)/ ) {
++		print "\tgroups      = yes\n";
++	}
+ 	if( grep /internal/, $command[5] ) {
+ 		print "\ttype        = INTERNAL\n";
+ 		print "\tid          = $command[0]-$command[1]\n";
++	} elsif ( $command[5] =~ /\/usr\/sbin\/tcpd/ ){
++	# Tcp wrapping is already implemented in xinetd
++		print "\tserver      = $command[6]\n";
++		if ( defined $command[7] ) {
++			print "\tserver_args = ";
++			$i = 7;
++			while( defined $command[$i] ) {
++				print "$command[$i] ";
++				$i++;
++			}
++			print "\n";
++		}
++	
+ 	} else {
+ 		print "\tserver      = $command[5]\n";
+ 		print "\tserver_args = ";
+@@ -65,6 +95,11 @@ while( <STDIN> ) {
+ 
+ 		print "\n";
+ 	}
++
++	if ($disable) {
++		print "\tdisable     = yes\n";
++	}
++
+ 	print "}\n";
+ 	print "\n";
+ }
+-- 
+1.5.3.6.2040.g15e6
+

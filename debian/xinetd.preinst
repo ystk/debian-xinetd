@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+if test "$1" = "upgrade"; then
+    # version 1:2.3.14-3 is the first one to provide inet-superserver
+    if dpkg --compare-versions "$2" lt-nl 1:2.3.14-3; then
+        rm -f /etc/init.d/inetd
+        dpkg-divert --package xinetd --remove --rename \
+            --divert /etc/init.d/inetd.real /etc/init.d/inetd
+    fi
+fi
+
+#DEBHELPER#

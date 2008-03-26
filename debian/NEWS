@@ -1,0 +1,19 @@
+xinetd (1:2.3.14-6) unstable; urgency=low
+
+  Thanks to David Madore, xinetd now is able to listen on IPv6 addresses for
+  inetd.conf compatibility layer. This is now the new default mode for xinetd
+  in Debian.
+
+ -- Pierre Habouzit <madcoder@debian.org>  Mon, 24 Mar 2008 12:50:42 +0100
+
+xinetd (1:2.3.14-3) unstable; urgency=low
+
+  This version enables inetd_compat mode by default, so that we can pretend to
+  be a real inet-superserver. This way, packages that use update-inetd will
+  work with xinetd properly. The inetd_compat mode is forced for new
+  installations only, and can be tweaked in /etc/default/xinetd.
+
+  Note that if the same service is configured in /etc/xinetd.d/ and in
+  /etc/inetd.conf, the former takes precedence, based on the service id.
+
+ -- Pierre Habouzit <madcoder@debian.org>  Tue, 27 Nov 2007 01:55:29 +0100

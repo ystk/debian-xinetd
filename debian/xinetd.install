@@ -1,0 +1,2 @@
+debian/xinetd.conf     etc/
+debian/xinetd.d        etc/
