@@ -1,7 +1,7 @@
 Source: xinetd
 Section: net
 Priority: extra
-Maintainer: Pierre Habouzit <madcoder@debian.org>
+Maintainer: Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>
 Standards-Version: 3.7.3
 Build-Depends: debhelper (>> 5.0.0), libwrap0-dev, autotools-dev, lsb-base
 Vcs-Git: git://git.madism.org/packages/xinetd.git

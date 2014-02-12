@@ -1,3 +1,19 @@
+xinetd (1:2.3.14-7.1+deb7u1) stable; urgency=high
+
+  * Fix CVE-2013-4342 making TCPMUX services change the uid.
+    (Closes: #324678)
+  * Set myself as maintainer.
+
+ -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Fri, 04 Oct 2013 23:01:23 +0200
+
+xinetd (1:2.3.14-7.1) unstable; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Fix CVE-2012-0862 avoiding enabling unintentional services
+    (Closes: #672381).
+
+ -- Luk Claes <luk@debian.org>  Sun, 27 May 2012 19:26:42 +0200
+
 xinetd (1:2.3.14-7) unstable; urgency=low
 
   * Update init.d to test if ipv6 support is built in the kernel before
