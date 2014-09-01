@@ -8,7 +8,7 @@
 #define __M_ENV_H
 
 /*
- * $Id: m_env.h,v 1.2 2003/03/09 19:27:08 steveg Exp $
+ * $Id: m_env.h,v 1.2 2003-03-09 19:27:08 steveg Exp $
  */
 
 struct __env

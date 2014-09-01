@@ -13,7 +13,7 @@
 
 
 /*
- * $Id: parse.h,v 1.4 2003/07/12 19:17:53 steveg Exp $
+ * $Id: parse.h,v 1.4 2003-07-12 19:17:53 steveg Exp $
  */
 
 typedef enum { NO_ENTRY, 

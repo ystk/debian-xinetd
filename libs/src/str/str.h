@@ -9,7 +9,7 @@
 #define __STR_H
 
 /*
- * $Id: str.h,v 1.4 2003/06/07 16:46:32 steveg Exp $
+ * $Id: str.h,v 1.4 2003-06-07 16:46:32 steveg Exp $
  */
 
 #include <stdarg.h>

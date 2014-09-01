@@ -13,7 +13,7 @@ service time
 	protocol	= tcp
 	user		= root
 	wait		= no
-}                                                                               
+}
 
 # This is the udp version.
 service time
@@ -25,4 +25,4 @@ service time
 	protocol	= udp
 	user		= root
 	wait		= yes
-}                                                                               
+}

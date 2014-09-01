@@ -8,7 +8,7 @@
 #define __XLOG_H
 
 /*
- * $Id: xlog.h,v 1.2 2003/03/09 19:30:08 steveg Exp $
+ * $Id: xlog.h,v 1.2 2003-03-09 19:30:08 steveg Exp $
  */
 
 /*

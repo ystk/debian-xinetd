@@ -6,7 +6,7 @@
 
 
 /*
- * $Id: filelog.h,v 1.2 2003/03/09 19:29:21 steveg Exp $
+ * $Id: filelog.h,v 1.2 2003-03-09 19:29:21 steveg Exp $
  */
 
 #ifndef __FILELOG_H

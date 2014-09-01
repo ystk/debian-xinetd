@@ -5,7 +5,7 @@
 # * and conditions for redistribution.
 # */
 
-# $RCSid = "$Id: xconv.pl,v 1.3 2005/03/29 15:50:34 bbraun Exp $";
+# $RCSid = "$Id: xconv.pl,v 1.3 2005-03-29 15:50:34 bbraun Exp $";
 
 sub print_header;
 sub print_defaults;

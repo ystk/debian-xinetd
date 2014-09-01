@@ -9,7 +9,7 @@
 #define SCONF_H
 
 /*
- * $Id: sconf.h,v 1.10 2005/10/05 17:15:33 bbraun Exp $
+ * $Id: sconf.h,v 1.11 2007-09-20 14:58:27 bbraun Exp $
  */
 #include "config.h"
 #ifdef HAVE_STDINT_H
@@ -58,6 +58,7 @@
 #define SF_SENSOR       9
 #define SF_IPV4         10
 #define SF_IPV6         11
+#define SF_LABELED      12
 
 /*
  * Values for log options
@@ -239,6 +240,7 @@ struct service_config
 #define SC_SENSOR( scp )          M_IS_SET( (scp)->sc_xflags, SF_SENSOR )
 #define SC_IPV4( scp )            M_IS_SET( (scp)->sc_xflags, SF_IPV4 )
 #define SC_IPV6( scp )            M_IS_SET( (scp)->sc_xflags, SF_IPV6 )
+#define SC_LABELED_NET( scp )     M_IS_SET( (scp)->sc_xflags, SF_LABELED )
 
 #define SC_IS_RPC( scp )         ( M_IS_SET( (scp)->sc_type, ST_RPC ) )
 #define SC_IS_INTERNAL( scp )    ( M_IS_SET( (scp)->sc_type, ST_INTERNAL ) )

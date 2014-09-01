@@ -9,7 +9,7 @@
 #define XCONFIG_H
 
 /*
- * $Id: xconfig.h,v 1.1.1.1 2003/02/19 17:29:28 bbraun Exp $
+ * $Id: xconfig.h,v 1.1.1.1 2003-02-19 17:29:28 bbraun Exp $
  */
 
 /*

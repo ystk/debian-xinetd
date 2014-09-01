@@ -9,7 +9,7 @@
 #define BUILTINS_H
 
 /*
- * $Id: builtins.h,v 1.2 2003/05/08 14:52:24 steveg Exp $
+ * $Id: builtins.h,v 1.2 2003-05-08 14:52:24 steveg Exp $
  */
 
 #include "defs.h"

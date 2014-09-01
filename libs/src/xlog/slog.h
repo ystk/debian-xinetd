@@ -6,7 +6,7 @@
 
 
 /*
- * $Id: slog.h,v 1.3 2003/05/31 21:58:58 steveg Exp $
+ * $Id: slog.h,v 1.3 2003-05-31 21:58:58 steveg Exp $
  */
 #ifndef __SLOG_H
 #define __SLOG_H

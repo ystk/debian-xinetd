@@ -4,7 +4,7 @@ README.Debian for xinetd
   xinetd in debian is supposed to work with -inetd_compat enabled (you can
   tweak that in /etc/default/xinetd).
 
-  Package maintainers that support xinetd in addition to xinetd, will drop
+  Package maintainers that support xinetd in addition to inetd, will drop
   files in /etc/xinetd.d/<service> _and_ add entries in /etc/inetd.conf,
   enabling them using update-inetd.
 

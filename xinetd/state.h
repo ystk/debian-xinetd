@@ -9,7 +9,7 @@
 #define STATE_H
 
 /*
- * $Id: state.h,v 1.3 2005/03/30 23:15:28 bbraun Exp $
+ * $Id: state.h,v 1.3 2005-03-30 23:15:28 bbraun Exp $
  */
 
 #include "config.h"

@@ -9,7 +9,7 @@
 #define ADDR_H
 
 /*
- * $Id: addr.h,v 1.1.1.1 2003/02/19 17:29:27 bbraun Exp $
+ * $Id: addr.h,v 1.1.1.1 2003-02-19 17:29:27 bbraun Exp $
  */
 
 

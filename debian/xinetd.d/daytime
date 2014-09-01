@@ -11,7 +11,7 @@ service daytime
 	protocol	= tcp
 	user		= root
 	wait		= no
-}                                                                               
+}
 
 # This is the udp version.
 service daytime
@@ -23,4 +23,4 @@ service daytime
 	protocol	= udp
 	user		= root
 	wait		= yes
-}                                                                               
+}

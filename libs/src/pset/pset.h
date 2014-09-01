@@ -8,7 +8,7 @@
 #define __PSET_H
 
 /*
- * $Id: pset.h,v 1.2 2003/03/09 19:27:08 steveg Exp $
+ * $Id: pset.h,v 1.2 2003-03-09 19:27:08 steveg Exp $
  */
 
 #include <stdlib.h>

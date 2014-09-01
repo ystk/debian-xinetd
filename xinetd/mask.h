@@ -9,7 +9,7 @@
 #define MASK_H
 
 /*
- * $Id: mask.h,v 1.1.1.1 2003/02/19 17:29:28 bbraun Exp $
+ * $Id: mask.h,v 1.1.1.1 2003-02-19 17:29:28 bbraun Exp $
  */
 
 #include "config.h"

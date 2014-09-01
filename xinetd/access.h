@@ -9,7 +9,7 @@
 #define ACCESS_H
 
 /*
- * $Id: access.h,v 1.2 2004/01/02 21:07:42 steveg Exp $
+ * $Id: access.h,v 1.2 2004-01-02 21:07:42 steveg Exp $
  */
 
 

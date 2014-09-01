@@ -1,104 +1,15 @@
 #!/usr/bin/make -f
+SHELL=sh -e
 
-CFLAGS=-Wall -Wextra -g $(if $(findstring noopt,$(DEB_BUILD_OPTIONS)),-O0,-O2)
-tmp = $(CURDIR)/debian/xinetd
+prefix = $(CURDIR)/debian/xinetd/usr
 
-srcpkg = $(shell dpkg-parsechangelog | sed -ne 's/Source: *//p')
-srcver = $(shell dpkg-parsechangelog | sed -ne 's/Version: *\(.*:\)\?\(.*\)-[0-9.]*$$/\2/p')
-pkgdir = '$(CURDIR)'/debian/xinetd
-#{{{ generic rules
+override_dh_auto_configure:
+	dh_auto_configure -- --with-loadavg --with-libwrap --prefix=$(prefix) \
+	--mandir=$(prefix)/share/man --infodir=$(prefix)/share/info
 
-../$(srcpkg)_$(srcver).orig.tar.gz:
-	@if git rev-parse --git-dir >/dev/null 2>&1; then                 \
-	    echo -n 'Regenerating $(@F)';                                 \
-	    git show pristine-tar:$(@F).delta | pristine-tar gentar - $@; \
-	    echo .;                                                       \
-	fi
+override_dh_autoreconf:
+	dh_autoreconf autoconf
 
-check-tarball: ../$(srcpkg)_$(srcver).orig.tar.gz
+%:
+	dh  $@ --with autoreconf,autotools_dev
 
-.PHONY: check-tarball
-
-#}}}
-#{{{ maintainer stuff
-
-refresh-patches: check-tarball
-	@dh_testdir
-	@echo 'refreshing debian/patches:'
-	@rm -rf '$(CURDIR)'/debian/patches
-	@mkdir -p '$(CURDIR)'/debian/patches
-	@cd '$(CURDIR)'/debian/patches && git format-patch upstream..upstream+patches
-	@echo .
-
-#}}}
-
-patch: patch-stamp check-tarball
-patch-stamp:
-	dh_testdir
-	set -e; test -e patch-stamp || \
-	    for i in `ls -1 debian/patches/*.patch || :`; do echo Apply patch $$i; patch -p1 <$$i > /dev/null; done
-	touch $@
-
-unpatch:
-	dh_testdir
-	set -e; ! test -e patch-stamp || \
-	    for i in `ls -1r debian/patches/*.patch || :`; do echo Unapply patch $$i; patch -p1 -R <$$i > /dev/null; done
-	rm -f patch-stamp
-
-configure: configure-stamp
-configure-stamp: patch
-	dh_testdir
-	cp /usr/share/misc/config.* '$(CURDIR)'
-	CFLAGS="-O2" ./configure --prefix=/usr         \
-	       --mandir=\$${prefix}/share/man          \
-	       --infodir=\$${prefix}/share/info        \
-	       --host=$(DEB_HOST_GNU_TYPE)             \
-	       --build=$(DEB_BUILD_GNU_TYPE)           \
-	       \
-	       --with-loadavg          \
-	       --with-libwrap
-	touch $@
-
-build: configure-stamp build-stamp
-build-stamp:
-	dh_testdir
-	$(MAKE)
-	touch $@
-
-clean: unpatch
-	dh_testdir
-	dh_testroot
-	! test -e Makefile || $(MAKE) distclean
-	rm -f build-stamp configure-stamp
-	dh_clean
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs
-	$(MAKE) install prefix=$(pkgdir)/usr
-
-binary-indep: build install
-
-binary-arch: build install
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs CHANGELOG
-	dh_installdocs README debian/README.update-inetd debian/xinetd.org-FAQ.html
-	dh_installexamples xinetd/sample.conf
-	dh_installinit -r
-	dh_installdebconf
-	dh_install
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-
-.PHONY: patch build clean binary-indep binary-arch binary install configure

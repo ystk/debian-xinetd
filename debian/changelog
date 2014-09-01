@@ -1,43 +1,106 @@
-xinetd (1:2.3.14-7.1+deb7u1) stable; urgency=high
+xinetd (1:2.3.15-3) unstable; urgency=low
+
+  * Add lintian override for script-with-language-extension.
+  * "service xinetd status" shows the status of all the services as well.
+  * Update config.{sub,guess} for AArch64. (Closes: #727277)
+
+ -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Sat, 26 Oct 2013 11:00:10 +0200
+
+xinetd (1:2.3.15-2) unstable; urgency=high
 
   * Fix CVE-2013-4342 making TCPMUX services change the uid.
     (Closes: #324678)
-  * Set myself as maintainer.
 
- -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Fri, 04 Oct 2013 23:01:23 +0200
+ -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Thu, 03 Oct 2013 16:13:32 +0200
+
+xinetd (1:2.3.15-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #673531)
+  * Drop all patches that were included upstream.
+  * Store pidfile in /run rather than /var/run.
+  * Use pidfile for start-stop-daemon.
+    (Closes: #644515, #129086) (LP: #868538)
+  * Port patch on 000008-fix-manpages to work on the new
+    upstream version.
+
+ -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Fri, 10 May 2013 13:47:18 +0200
+
+xinetd (1:2.3.14-10) unstable; urgency=low
+
+  * Upload to unstable.
+  * Bump Standards-version to 3.9.4.
+  * Use automatic doc-base rather than install it with
+    xinetd.install.
+
+ -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Mon, 06 May 2013 00:52:05 +0200
+
+xinetd (1:2.3.14-9~exp1) experimental; urgency=low
+
+  * Add $network in the LSB headers for the init script.
+  * Add description in the LSB headers
+  * Update LSB headers to indicate as providing itself and
+    as replacement for inetd.
+  * Fix a typo and some warnings in man pages (patch in 000008-fix-manpages).
+  * Add debian/watch file.
+  * Register the faq html file with doc-base.
+  * Add more details to the previous changelog entry.
+  * Use correct debhelper version in the Build-Deps: 9 instead of 9.0.0.
+  * Add DEP-3 headers to the 000007-CVE-2012-0862 patch.
+  * Remove extra whitespace from debian/xinet.d/*.
+  * Wrap debian/rules to 80 columns.
+
+ -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Sat, 18 Aug 2012 16:38:35 +0100
+
+xinetd (1:2.3.14-8~exp1) experimental; urgency=low
+
+  * New maintainer. (Closes: #661881)
+  * Explicit switch to quilt, instead of hand made patch management.
+  * Correct typo in README.Debian. (Closes: #611637)
+  * Add status action in init.d. (Closes: #527887)
+  * Defaults to rsyslog. (Closes: #526923)
+  * Fix lintian warnings about missing recommended target.
+  * Fix lintian warning maintainer-script-without-set-e.
+  * New and simplified debian/rules using dh.
+  * Let the scripts be generated automatically.
+  * Use the debian way for patches.
+  * Bump to latest Standards-Version.
+  * Depend on debhelper 9.
+  * Replace package VCS-* fields with new URL.
+  * Bump compatibility level in debian/compat to 9. (Closes: #542729)
+
+ -- Salvo 'LtWorf' Tomaselli <tiposchi@tiscali.it>  Thu, 09 Aug 2012 23:23:20 +0200
 
 xinetd (1:2.3.14-7.1) unstable; urgency=high
 
-  * Non-maintainer upload by the Security Team.
-  * Fix CVE-2012-0862 avoiding enabling unintentional services
-    (Closes: #672381).
+  * Non-maintainer upload.
+  * Fix CVE-2012-0862 avoiding enabling unintentional services.
+    (Closes: #672381)
 
  -- Luk Claes <luk@debian.org>  Sun, 27 May 2012 19:26:42 +0200
 
 xinetd (1:2.3.14-7) unstable; urgency=low
 
   * Update init.d to test if ipv6 support is built in the kernel before
-    activating it by default (Closes: 472755).
+    activating it by default. (Closes: #472755)
 
  -- Pierre Habouzit <madcoder@debian.org>  Wed, 26 Mar 2008 17:46:54 +0100
 
 xinetd (1:2.3.14-6) unstable; urgency=low
 
-  * Add patch from David Madore so that xinetd groks an -inetd_ipv6 mode, that
-    works like -inetd_compat but also listen on IPv6 addresses.
-    (Closes: 472436).
-
+  * Add patch from David Madore so that xinetd groks an -inetd_ipv6 mode,
+    that works like -inetd_compat but also listen on IPv6 addresses.
+    (Closes: #472436)
   * debian/control:
-    + Bump standards-version to 3.7.3.
-    + update VCS-{Git,Browser} fields to reflect the reality.
-    + Fix Homepage field (http:// prefix was missing).
+    - bump standards-version to 3.7.3
+    - update VCS-{Git,Browser} fields
+    - fix Homepage field (http:// prefix was missing)
 
  -- Pierre Habouzit <madcoder@debian.org>  Mon, 24 Mar 2008 12:48:39 +0100
 
 xinetd (1:2.3.14-5) unstable; urgency=medium
 
-  * woops fix wrong ordering of the sed arguments, thanks to madduck.
-    (Closes: 453371).
+  * Fix wrong ordering of the sed arguments in postinst script.
+    Thanks to Martin F Krafft <madduck@debian.org>. (Closes: 453371)
 
  -- Pierre Habouzit <madcoder@debian.org>  Thu, 29 Nov 2007 09:29:55 +0100
 
@@ -58,98 +121,95 @@ xinetd (1:2.3.14-4) unstable; urgency=low
 
 xinetd (1:2.3.14-3) unstable; urgency=low
 
-  [ The let's try to provide inet-superserver upload ]
-
-  xinetd has an -inetd_compat mode that renders it suitable for being an
-  inet-superserver, instead of clumsily divert netkit-inetd. Enabling this
-  closes: 134955, 188232, 326975, 355417, 373157, 406190, 406660, 448617.
-
+  * xinetd has an -inetd_compat mode that renders it suitable for being an
+  inet-superserver, instead of clumsily divert netkit-inetd, which this
+  release enables now by default. (Closes: #134955, #188232, #326975,
+  #355417, #373157, #406190, #406660, #448617)
   * debian/NEWS: explain the transition.
-
   * debian/control:
-     + add Provides/Conflicts on inet-superserver.
-     + add dependency on update-inetd.
-     + add dependency on lsb-base.
-
+    - add Provides/Conflicts on inet-superserver
+    - add dependency on update-inetd
+    - add dependency on lsb-base
   * maintainer scripts:
-     + preinst: remove diversion of /etc/init.d/inetd.
-     + other: don't touch /etc/init.d/inetd anymore.
-
+    - preinst: remove diversion of /etc/init.d/inetd
+    - other: don't touch /etc/init.d/inetd anymore
   * debian/xinetd.defaults: enable inetd_compat mode, so that we can
     legitimately provide inet-superserver.
-
   * debian/xinetd.init:
-     + support the new INETD_COMPAT option.
-     + be lsb.
+    - support the new INETD_COMPAT option
+    - be LSB-compliant
 
  -- Pierre Habouzit <madcoder@debian.org>  Mon, 26 Nov 2007 22:24:09 +0100
 
 xinetd (1:2.3.14-2) unstable; urgency=low
 
-  * Adopt package (Closes: 434357), thanks Thomas for your past work.
+  * Adopt package. (Closes: #434357)
   * debian/control:
-      + set myself as maintainer.
-      + add VCS-* headers.
-      + add Homepage header.
+      - set myself as maintainer
+      - add VCS-* fields
+      - add Homepage field
   * debian/rules:
-      + make it slightly more modern.
-      + use pristine-tar.
-      + use debian/patches.
+      - make it slightly more modern
+      - use pristine-tar
+      - use debian/patches
   * Always use up2date config.{sub,guess}:
-      + add autotools-dev to the Depends;
-      + copy config.{guess,sub} from /usr/share/misc/;
-  * Unset TMPDIR in the initscript (Closes: 379400).
-  * Capitalize IP in the package Description (Closes: 414288).
+      - add autotools-dev to the Depends
+      - copy config.{guess,sub} from /usr/share/misc/
+  * Unset TMPDIR in the initscript. (Closes: #379400)
+  * Capitalize IP in the package Description. (Closes: #414288)
   * Fix typo in xinetd.conf(5), spurious `+': update
-    Documentation-fixes.patch (Closes: 413997).
+    Documentation-fixes.patch. (Closes: #413997)
 
  -- Pierre Habouzit <madcoder@debian.org>  Mon, 26 Nov 2007 18:08:16 +0100
 
 xinetd (1:2.3.14-1.1) unstable; urgency=low
 
   * Non-maintainer upload.
-  * Update xinetd to use invoke-rc.d (Closes: 427892).
+  * Update xinetd to use invoke-rc.d. (Closes: #427892)
 
  -- Pierre Habouzit <madcoder@debian.org>  Wed, 18 Jul 2007 18:38:26 +0200
 
 xinetd (1:2.3.14-1) unstable; urgency=low
 
-  * New upstream release (closes: #342724).
-  * Updated config.guess and config.sub (closes: #342448).
-  * Comment about log_on_* in xinetd.conf (closes: #312663).
-  * Patch by Leo Weppelman <leo@wau.mis.ah.nl> on child.c
-    (closes: #342559)
+  * New upstream release. (Closes: #342724)
+  * Update config.guess and config.sub to fix FTBFS on
+    the kfreebsd ports. (Closes: #342448)
+  * Comment about log_on_* in xinetd.conf. (Closes: #312663)
+  * Prevent xinetd from closing stdout of the services to be
+    started. Patch by Leo Weppelman <leo@wau.mis.ah.nl>.
+    (Closes: #342559)
   * Patch for xconv.pl by Ron Murray <murrayr@dor.state.ma.us> to
-    process "#<off>#" lines (closes: #336023).
-  * Added configuration file for discard internal service
-    (closes: #309312)
-  * Bumped Standards-Version to 3.7.2
-  * Bumped debhelper compatibility level to 5.
+    process "#<off>#" lines. (Closes: #336023).
+  * Add configuration file to discard internal service.
+    (Closes: #309312)
+  * Bump Standards-Version to 3.7.2
+  * Bump debhelper compatibility level to 5.
 
  -- Thomas Seyrat <tomasera@debian.org>  Tue,  9 May 2006 13:32:06 +0200
 
 xinetd (1:2.3.13-3) unstable; urgency=low
 
-  * -stayalive option in /etc/default/xinetd instead of init script
-    to make behaviour change easier. (closes: #294665)
-  * Applied patch from Andreas Jochens <aj@andaco.de> to build
-    on amd64 with gcc-4.0 (closes: #297911)
-  * Run /etc/init.d/inetd in postrm only if it exists (closes: #295554)
-  * Fixed erroneous itox.8 man page (closes: #287814)
-  * Included xinetd.org FAQ as /usr/share/doc/xinetd/xinetd.org-FAQ.html
-  * Edited README.update-inetd (closes: #287821)
-  * Applied patch to xconv.pl by Javier Fernández-Sanguino Peña to fix
-    - what Amanda needs (closes: #167367)
-      (http://www.amanda.org/docs/install.html)
-    - numerically-specified services (closes: #176464)
+  * Have -stayalive option in /etc/default/xinetd instead of init script
+    to make behaviour change easier. (Closes: #294665)
+  * Apply patch from Andreas Jochens <aj@andaco.de> to build
+    on amd64 with gcc-4.0. (Closes: #297911)
+  * Run /etc/init.d/inetd in postrm only if it exists. (Closes: #295554)
+  * Fix erroneous itox.8 man page. (Closes: #287814)
+  * Include xinetd.org FAQ as /usr/share/doc/xinetd/xinetd.org-FAQ.html
+  * Edited README.update-inetd. (Closes: #287821)
+  * Apply patch to xconv.pl by Javier Fernández-Sanguino Peña:
+    - resolve an issue with Amanda when xinetd is used instead
+      of inetd. (Closes: #167367)
+    - fix an issue with numerically-specified services when converting
+      from an inetd configuration to xinetd. (Closes: #176464)
     - TCP Wrappers
 
  -- Thomas Seyrat <tomasera@debian.org>  Thu, 10 Mar 2005 11:03:24 +0100
 
 xinetd (1:2.3.13-2) unstable; urgency=low
 
-  * We now start xinetd with -stayalive by default to keep it
-    running even if no service is enabled. (closes: #270803)
+  * Start xinetd with -stayalive by default to keep it
+    running even if no service is enabled. (Closes: #270803)
   * Modify Makefile.in to install xinetd.log manpage in section
     5 instead of 8.
 
@@ -157,360 +217,356 @@ xinetd (1:2.3.13-2) unstable; urgency=low
 
 xinetd (1:2.3.13-1) unstable; urgency=low
 
-  * New upstream release
-    - fixes factorized addresses in only_from (closes: #212533)
+  * New upstream release.
+    - fixes factorized addresses in only_from. (Closes: #212533)
   * inetd.conf doesn't get read by default anymore, too much trouble.
-    Removed -inetd_compat from /etc/default/xinetd (closes: #198585)
+    Remove -inetd_compat from /etc/default/xinetd. (Closes: #198585)
   * "services" internal service was removed upstream, so we don't
     need /etc/xinetd.d/xinetd anymore, nor documentation for these
-    internal services (closes: #242646)
-  * Bumped Standards-Version to 3.6.1 
+    internal services. (Closes: #242646)
+  * Bump Standards-Version to 3.6.1.
 
  -- Thomas Seyrat <tomasera@debian.org>  Sun, 18 Apr 2004 13:33:57 +0200
 
 xinetd (1:2.3.12-2) unstable; urgency=high
 
-  * -1 was partially fucked up
-  * Applied patch on nvlists.c from upstream to fix segfault
-  * Added updated README.update-inetd
-  * -reuse is not needed anymore since 2.3.4, REUSE is on by default on
-    all services
+  * Apply patch on nvlists.c from upstream to fix segfault.
+  * Update README.update-inetd.
+  * -reuse is not needed anymore since 2.3.4 as REUSE is on
+    by default on all services.
   * "xadmin" and "servers" internal services were removed upstream,
-    they don't appear anymore in /etc/xinetd.d/xinetd
-  * /etc/default/xinetd also gets removed when xinetd is purged
+    they don't appear anymore in /etc/xinetd.d/xinetd.
+  * /etc/default/xinetd is also removed when xinetd is purged.
 
  -- Thomas Seyrat <tomasera@debian.org>  Fri, 15 Aug 2003 16:06:10 +0200
 
 xinetd (1:2.3.12-1) unstable; urgency=low
 
-  * New upstream release
-  * Bumped Standards-Version to 3.6.0
-  * Removed README.samba
+  * New upstream release.
+  * Bump Standards-Version to 3.6.0.
+  * Remove README.samba
 
  -- Thomas Seyrat <tomasera@debian.org>  Thu, 14 Aug 2003 14:21:41 +0200
 
 xinetd (1:2.3.11-2) unstable; urgency=low
 
   * Attempt at using inetd.conf compatibility mode.
-    - No more "inetd.conf to xinetd.conf" autoconvert, now xinetd
+    - no more "inetd.conf to xinetd.conf" autoconvert, now xinetd
       reads inetd.conf after xinetd.conf
     - inetd to xinetd transition should be seamless and inetd-started
       services are not supposed to be broken (closes: #146908)
-    - No more debconf (we don't prompt user anymore, we rely on dpkg to
+    - no more debconf (we don't prompt user anymore, we rely on dpkg to
       check for an existing xinetd.conf, and to prompt accordingly)
-      (closes: #183458)
-  * We install /etc/xinetd.d/, the (disabled) internal services
+      (Closes: #183458)
+  * Install /etc/xinetd.d/, the (disabled) internal services
     configuration files (Redhat-style), and the default xinetd.conf
-    considers them. (closes: #167726)
-  * Removed logrotate config file (we log through syslog per default)
-  * Removed logrotate from recommended packages
-  * Updated and simplified maintainer scripts
-  * Bumped Standards-Version to 3.5.10
+    considers them. (Closes: #167726)
+  * Remove logrotate config file as we log through syslog per default.
+  * Remove logrotate from Recommends.
+  * Update and simplify maintainer scripts.
+  * Bump Standards-Version to 3.5.10.
 
  -- Thomas Seyrat <tomasera@debian.org>  Mon,  9 Jun 2003 22:50:54 +0200
 
 xinetd (1:2.3.11-1) unstable; urgency=high
 
   * New upstream release
-     - Steve Grubb fixed memory leaks found with valgrind
-       (closes: #190217)
-  * Bumped Standards-Version to 3.5.9 
+    - fix memory leaks found by Steve Grubb with valgrind. (Closes: #190217)
+  * Bump Standards-Version to 3.5.9.
 
  -- Thomas Seyrat <tomasera@debian.org>  Sat, 26 Apr 2003 16:26:45 +0200
 
 xinetd (1:2.3.10-1) unstable; urgency=low
 
-  * New upstream release
-  * Bumped Standards-Version to 3.5.8
-  * Start daemon with -pidfile /var/run/xinetd.pid (closes: #172770)
+  * New upstream release.
+  * Bumped Standards-Version to 3.5.8.
+  * Start daemon with -pidfile /var/run/xinetd.pid. (Closes: #172770)
 
  -- Thomas Seyrat <tomasera@debian.org>  Mon, 13 Jan 2003 13:13:42 +0100
 
 xinetd (1:2.3.9-1) unstable; urgency=low
 
-  * New upstream release
-  * Bumped Standards-Version to 3.5.7 
+  * New upstream release.
+  * Bump Standards-Version to 3.5.7.
 
  -- Thomas Seyrat <tomasera@debian.org>  Wed,  2 Oct 2002 10:25:33 +0200
 
 xinetd (1:2.3.7-1) unstable; urgency=high
 
-  * New upstream release
-     - urgency=high to supersede NMU.
-     - includes security fix corrected in 2.3.6-1.1.
-  * Applied two patches for 2.3.6 from Steve G. fixing some
-    "redirect without server line" service issues. (closes: #155990)
+  * New upstream release.
+     - set urgency=high to supersede NMU.
+     - include security fixes from 2.3.6-1.1.
+  * Apply two patches for 2.3.6 from Steve G. fixing some
+    "redirect without server line" service issues. (Closes: #155990)
 
  -- Thomas Seyrat <tomasera@debian.org>  Tue, 13 Aug 2002 15:05:05 +0200
 
 xinetd (1:2.3.6-1.1) unstable; urgency=high
 
-  * Non-maintainer upload by Security Team
-  * Applied a patch from SolarDesigner to keep xinetd from leaking the
+  * Non-maintainer upload.
+  * Apply a patch from SolarDesigner to keep xinetd from leaking the
     recently introduced signal pipe into services started from xinetd.
-  * Applied upstream bugfix to handle IPv6 addresses in config parser
+  * Apply upstream bugfix to handle IPv6 addresses in config parser
     (unfortunately, it was applied upstream to the 2.3.6 tarball which is
-    now different from ours)
+    now different from ours).
 
  -- Martin Schulze <joey@infodrom.org>  Tue, 13 Aug 2002 10:44:14 +0200
 
 xinetd (1:2.3.6-1) unstable; urgency=low
 
-  * New upstream release (closes: #121044, #149114)
-  * Removed build dependency on perldoc (upstream now ships xconv.pl manpage).
-  * Included debconf template french translation.
+  * New upstream release.
+    - fix issues when NAMEINARGS is passed to services. (Closes: #121044)
+    - fix formatting error in xinetd.conf.5 (Closes: #149114)
+  * Remove build dependency on perldoc (upstream now ships xconv.pl manpage).
+  * Include French debconf template translation.
 
  -- Thomas Seyrat <tomasera@debian.org>  Mon,  5 Aug 2002 22:17:38 +0200
 
 xinetd (1:2.3.5-1) unstable; urgency=low
 
-  * New upstream release
-  * New maintainer (closes: #153977)
-  * Minor debian/rules rewriting
-  * Bumped Standards-Version to 3.5.6.1. 
+  * New upstream release.
+  * New maintainer. (Closes: #153977)
+  * Minor debian/rules rewrite.
+  * Bump Standards-Version to 3.5.6.1.
 
  -- Thomas Seyrat <tomasera@debian.org>  Sun, 28 Jul 2002 16:51:39 +0200
 
 xinetd (1:2.3.4-2) unstable; urgency=high
 
-  * The "aarrgghh, why can't upstream test their release?" release
-  * Three small address parsing fixes -- these are being punted upstream...
-    xinetd/addr.c:explicit_addr:    Set /32 to still be a masked addr
-                                    closes: #144672
-    xinetd/addr.c:factorized_addr:  Restart the parse at the right point
-                                    after the syntax check pass.
-	   	                    closes: #141453
-    xinetd/addr.c:addrlist_match:   Altered the "mask" check to remember to
-                                    apply the mask to /both/ halves of the
-			            expression
-			            closes: #145704
-  * Small change since I forgot to read the changelog carefully enough...
-    debian/init:                    Send HUP to reload config
-  
+  * Three small address parsing fixes; these are being punted upstream:
+     - xinetd/addr.c:explicit_addr: Set /32 to still be a masked addr
+       (Closes: #144672)
+     - xinetd/addr.c:factorized_addr: Restart the parse at the right point
+       after the syntax check pass. (Closes: #141453)
+     - xinetd/addr.c:addrlist_match: Modify the "mask" check to remember to
+       apply the mask to /both/ halves of the expression. (Closes: #145704)
+  * debian/init: Send HUP to reload config.
+
  -- Daniel Silverstone <dsilvers@debian.org>  Fri,  3 May 2002 21:47:35 +0100
 
 xinetd (1:2.3.4-1.1) unstable; urgency=low
 
   * Non-maintainer upload.
-  * Update config.guess and config.sub (closes: #141653).
+  * Update config.guess and config.sub. (Closes: #141653)
 
  -- Colin Watson <cjwatson@debian.org>  Sun,  7 Apr 2002 23:51:53 +0100
 
 xinetd (1:2.3.4-1) unstable; urgency=low
 
-  * New upstream version:
-    Lots and lots. Unsure exactly which bugs
-    in the debian bts it closes -- I'll need to look
-    more closely
-  * Give configure the --with-loadavg parameter. closes: #140619
+  * New upstream release.
+  * Give configure the --with-loadavg parameter. (Closes: #140619)
 
  -- Daniel Silverstone <dsilvers@debian.org>  Thu,  4 Apr 2002 23:53:54 +0100
 
 xinetd (1:2.3.3-4) unstable; urgency=low
 
-  * Corrected reload issue in /etc/init.d/xinetd by making reload
-    and force-reload the same signal. (follows from removal of
-    soft reload in 2.3.1) closes: #127676
+  * Fix a reload issue in /etc/init.d/xinetd by making reload
+    and force-reload the same signal. Follows from removal of
+    soft reload in 2.3.1. (Closes: #127676)
 
  -- Daniel Silverstone <dsilvers@debian.org>  Sun,  6 Jan 2002 17:25:45 +0000
 
 xinetd (1:2.3.3-3) unstable; urgency=low
 
-  * Integrated fixes to pt_BR template. closes: #120846
-  * Integrated fixes to de template 
-     (thanks to Stephan Baeckert of Pyramid Computer GmBH)
-  * Fixed implicit declaration of malloc() -- This sorts out an ia64
-     issue and therefore closes: #124399
-  * Fixed spelling mistake in control file (raised by mdz) closes: #125544
-  
+  * Update the pt_BR debconf template. (Closes: #120846)
+  * Update the German debconf template. Thanks to Stephan Baeckert.
+  * Fix implicit declaration of malloc(). This sorts out an ia64
+    issue. (Closes: #124399)
+  * Fix spelling mistake in control file. (Closes: #125544)
+
  -- Daniel Silverstone <dsilvers@debian.org>  Tue, 18 Dec 2001 08:38:04 +0000
 
 xinetd (1:2.3.3-2) unstable; urgency=low
 
-  * Re-introduced debconf independance at the cost
+  * Re-introduce debconf independance at the cost
     of needing a lintian override.
-  * Cleared an issue with building on potato WRT pod2man
+  * Fix an issue with building on potato WRT pod2man.
 
  -- Daniel Silverstone <dsilvers@debian.org>  Tue, 25 Sep 2001 18:52:58 +0100
 
 xinetd (1:2.3.3-1) unstable; urgency=high
 
-  * New upstream version
-    Changes of particular interest include:
-     o 2.3.1 - Applied Solar Designer's AUDIT patches
-             - Removed soft-reconfigure. reload is always hard.
-     o 2.3.2 - Fix a heap overrun issue.
-     o 2.3.3 - RPC parser works again.
-  * New Maintainer
-  * Fixed issue where xinetd.conf stomped on your configs by
-    making a backup somehow. closes: #110596
-  * Removed support for systems without debconf. This introduces
-    a dependency on debconf - sorry. closes: #90008
-  * Introduced a build dependency on perl-doc in order to build the
+  * New upstream release.
+    - changes of particular interest include:
+      o 2.3.1 - Applied Solar Designer's AUDIT patches
+              - Removed soft-reconfigure. reload is always hard.
+      o 2.3.2 - Fix a heap overrun issue.
+      o 2.3.3 - RPC parser works again.
+  * New maintainer
+  * Fix an issue where xinetd.conf stomped on your configs by
+    making a backup somehow. (Closes: #110596)
+  * Remove support for systems without debconf. This introduces
+    a dependency on debconf. (Closes: #90008)
+  * Introduc build dependency on perl-doc in order to build the
     manpage for xconv.pl
-  * Provided POD documentation for xconv.pl
-  * Corrected a dodgy comment in xconv.pl closes: #108754, #108751
-  * Included brazilian debconf template translations courtesy of
-    Andre Luis Lopes <andrelop@ig.com.br> closes: #108548
-  
+  * Provide POD documentation for xconv.pl
+  * Correct a dodgy comment in xconv.pl. (Closes: #108754, #108751)
+  * Include brazilian debconf template translations courtesy of
+    Andre Luis Lopes <andrelop@ig.com.br>. (Closes: #108548)
+
  -- Daniel Silverstone <dsilvers@debian.org>  Fri, 31 Aug 2001 14:49:57 +0100
 
 xinetd (1:2.3.0-1) unstable; urgency=high
 
-  * New upstream version (with a sane number, whee!).
-  * Included the German translation to the templates, closes: #95505.
-  * Use -reuse by default in the init script, closes: #97732.
-  * Includes the security fixes that wiggy applied to the stable version,
-    closes: #101201.
-  * Now recommends the proper syslogd virtual package, closes: #101629.
-  * Included the Spanish translation to the templates, closes: #103166.
-  * Polishing in the packaging.
-  * Orphaning the package.
+  * New upstream release.
+  * Orphan the package.
+  * Include German translation for the debconf templates. (Closes: #95505)
+  * Include Spanish translation for the debconf templates. (Closes: #103166)
+  * Use -reuse by default in the init script. (Closes: #97732)
+  * Fix a bug in svc_logprint (in xinetd/log.c) which may allow
+    remote root access due to a buffer overflow. (Closes: #101201)
+  * Recommend the proper syslogd virtual package. (Closes: #101629)
+  * Further polishing of the packaging.
 
  -- Josip Rodin <jrodin@jagor.srce.hr>  Sun, 15 Jul 2001 02:55:56 +0200
 
 xinetd (1:2.1.8.8.p3-2) unstable; urgency=low
 
-  * Added -x checks around lines that kill inetd, portmap, and xinetd init
-    script, because it can happen that those programs aren't there,
-    closes: #74759.
-  * Updated the template message about inetd.conf->xinetd.conf conversion,
-    closes: #78622.
-  * Standards-Version: 3.5.2: added DEB_BUILD_OPTIONS handling.
-  * Added version 2.0.54 to debhelper build-dependency because that's when
-    dh_installdebconf was introduced.
-  * Added logrotate among the recommended packages.
+  * Add -x checks around lines that kill inetd, portmap, and xinetd init
+    script, because it can happen that those programs aren't there.
+    (Closes: #74759)
+  * Update the template message about inetd.conf->xinetd.conf
+    conversion. (Closes: #78622)
+  * Bump Standards to 3.5.2: add DEB_BUILD_OPTIONS handling.
+  * Bump debhelper build dependency to 2.0.54. Since dh_installdebconf
+    is required now.
+  * Add logrotate to Recommends.
 
  -- Josip Rodin <jrodin@jagor.srce.hr>  Sat, 17 Mar 2001 16:52:20 +0100
 
 xinetd (1:2.1.8.8.p3-1) frozen unstable; urgency=low
 
-  * New upstream version, which includes just a few bugfixes, most of them
-    that aren't even related to Linux, but there is one which is rather
-    important:
-        Fixed a bug in the access lists.  If you specified a host by
-                name in only_from, any connection from a host without
-                a reverse dns entry would be accepted.
+  * New upstream release.
+    - fix a bug in the access lists; if you specified a host by
+      name in "only_from," any connection from a host without
+      a reverse DNS entry would be accepted
     This means that security policies (e.g. denial of access) for such hosts
     wouldn't be enforced, which is a very ugly security problem,
     closes: #65757.
-  * Added a clear warning to the postrm in the case when you don't have
+  * Add a clear warning to the postrm in the case when you don't have
     an init script for the original inetd anymore, saying you may need
     to reinstall netbase package to fix it. As this may happen due to
-    severe breakage in an old xinetd package, it needs to be said,
-    closes: #60836.
-  * Clarified convert-inetd-conf template text to explicitely say that the
+    severe breakage in an old xinetd package. (Closes: #60836)
+  * Clarify convert-inetd-conf template text to explicitely say that the
     config file will get overwritten on every upgrade if you say "Yes" to
     the question, and add two lines in postinst to explain how to make it
     not regenerate anymore.
-  * Synced portmapper check with inetd's init script and enhanced the regexp
-    match to catch " # foo" comments, otherwise it may produce false warning.
-  * Moved the message about terminating all services to prerm, where it's
+  * Sync portmapper check with inetd's init script and enhance the regexp
+    match to catch " # foo" comments, otherwise it may produce a false
+    warning.
+  * Move the message about terminating all services to prerm, where it's
     actually being done.
-  * Made update-rc.d run only on initial installs.
-  * Added debhelper to Build-Depends: and shortened the long description.
+  * Make update-rc.d run only on initial installs.
+  * Add debhelper to Build-Depends: and short the long description.
 
  -- Josip Rodin <jrodin@jagor.srce.hr>  Fri, 16 Jun 2000 20:13:03 +0200
 
 xinetd (1:2.1.8.8pre8-1) frozen unstable; urgency=low
 
-  * New upstream version, including only two bug fixes, one of which is a
-    Y2K fix in the date service (changed TIMEOFFSET macro), closes: #54795.
-    The second change is minor, a fix for problem when length of banner
-    name % 32 = 0, and banners fail to work.
+  * New upstream release.
+    - address a Y2K issue in the date service in the TIMEOFFSET macro
+      (Closes: #54795)
+    - fix that banners fail to work when the length of the banner
+      name is "name % 32 = 0"
 
  -- Josip Rodin <jrodin@jagor.srce.hr>  Sun, 16 Jan 2000 17:09:48 +0100
 
 xinetd (1:2.1.8.8pre6-1) unstable; urgency=low
 
-  * New upstream version, packaged only to fix the Y2K glitch in the
-    log file, closes: #53865.
-  * Adopted/tookover the package :) I hear Norbert is around, but he
-    hasn't contacted anyone regarding the package yet.
-  * Introducing debconf support, to ask about converting the config file,
+  * New upstream release.
+    - fix Y2K glitch in the log file. (Closes: #53865)
+  * Adopt the package.
+  * Introduce debconf support to ask about converting the config file,
     and to warn about update-inetd malfunctioning. However, I didn't remove
     the old method of asking the questions yet, just in case debconf
     doesn't exist. Only Recommends: debconf. Plus, I had to re-route all
     the messages to &2, because of debconf.
-  * Added the missing `k' in `syslogd' recommendation (doh!). Added
-    Build-Depends: libwrap0-dev.
-  * Moved the whole contents of preinst to postinst (that is, stopping of
+  * Add the missing `k' in `syslogd' recommendation.
+  * Add Build-Depends: libwrap0-dev.
+  * Move the whole contents of preinst to postinst (that is, stopping of
     inetd and portmap, and creating the diversion of inetd init file),
     no need to abuse preinst for that.
   * Use --background option for start-stop-daemon, to speed up loading,
     thus having to depend on dpkg >= 1.4.1.17.
-  * Fixed some details in postinst, init.d, config, and copyright files.
+  * Fix some details in postinst, init.d, config, and copyright files.
 
  -- Josip Rodin <jrodin@jagor.srce.hr>  Tue,  4 Jan 2000 23:54:08 +0100
 
 xinetd (1:2.1.8.7-1) unstable; urgency=low
 
   * Non-maintainer upload.
-  * Admitting the sad truth, i.e. marking the package as orphaned. Norbert
-    hasn't done an upload in some eleven months, and hasn't respondedÃÂto
-    our NMUs and several e-mails in more than two months. :(
-  * New upstream version. It's from a completely different development
-    branch, versioned differently, so I had to introduce an epoch. :|
-    Note that we *have to* use this version because the previous one breaks
-    its own original license! Closes: #38361 #41386 #41568.
-  * Updated packaging files for the new autoconf stuff, patched configure.in
+  * Orphan the package.
+  * New upstream release.
+    - It's from a completely different development branch, versioned
+      differently, so I had to introduce an epoch. Note that we have
+      to use this version because the previous one breaks its own
+      original license! (Closes: #38361, #41386, #41568)
+  * Update packaging files for the new autoconf stuff, patch configure.in
     and Makefile.in to support install in custom non-existant directories,
-    included example xinetd.conf file in examples directory.
+    include sample xinetd.conf file in examples directory.
   * Updated docs regarding the new xconv.pl script. Not using it in
     postinst, at least not yet.
-  * Skipped all old patches, except the one for src/itox.c, which is now
+  * Drop all old patches, except the one for src/itox.c, which is now
     forwarded/included in upstream package, with some others.
-  * Added --with-libwrap to configure flags, to link with libwrap0, as
-    suggested by the upstream author. From the README file:
-       When xinetd does access checking, it will first ask libwrap to check
-       /etc/hosts.allow and /etc/hosts.deny, then if libwrap accepts the
-       connection, xinetd will consult its own access control mechanism.
-  * Fixed postrm script to work on purge, and to remove /etc/init.d/inetd
+  * Add --with-libwrap to configure flags, to link with libwrap0, as
+    suggested by the upstream author in the README.
+  * Fix postrm script to work on purge, and to remove /etc/init.d/inetd
     (created in postinst) prior to un-diverting it (otherwise dpkg-divert
     would bomb out, overwriting not allowed).
-  * Moved making the dummy /etc/init.d/inetd script to postinst, to
+  * Move making the dummy /etc/init.d/inetd script to postinst, to
     avoid the lintian error.
-  * Fixed s/daemon-dir/daemon_dir/ in README.update-inetd file.
-  * Updated itox.1 manual page, moved it to section 8 and to xinetd/
-    directory, and integrated it (and itox) in the Makefile install: rule.
-  * Updated the init script, made checkportmap() check in /etc/xinetd.conf
+  * Fix s/daemon-dir/daemon_dir/ in README.update-inetd file.
+  * Update itox.1 manual page, move it to section 8 and to xinetd/
+    directory, and integrate it (and itox) in the Makefile install: rule.
+  * Update the init script, made checkportmap() check in /etc/xinetd.conf
     file (don't know whether the check is ultimately correct, though).
-  * Upgraded netbase dependency to 3.16-4, because the fixed update-inetd
+  * Upgrade netbase dependency to 3.16-4, because the fixed update-inetd
     script is included since that version.
-  * Doesn't recommend netstd anymore, apparently it no longer exists,
-    that closes: #49398 #49438.
+  * Don't recommend netstd anymore, apparently it no longer exists.
+    (Closes: #49398, #49438)
 
  -- Josip Rodin <jrodin@jagor.srce.hr>  Sat, 16 Oct 1999 19:14:14 +0200
 
 xinetd (2.2.1-8.SD1.2) unstable; urgency=low
 
-  * Non-maintainer upload. (diff posted to Bug#45602)
-
+  * Non-maintainer upload.
   * Add a dummy /etc/init.d/inetd script so netbase doesn't have to
-    worry about its files disappearing. (Fixes: Bug#45602)
+    worry about its files disappearing. (Closes: #45602)
 
  -- Anthony Towns <ajt@debian.org>  Fri, 15 Oct 1999 11:56:03 +1000
 
 xinetd (2.2.1-8.SD1.1) unstable; urgency=medium
 
   * Non-maintainer upload (is Norber Veber MIA?).
-  * Updated for the new netbase/inetd stuff.
-    Fixes: #43161 #44537 #44529 #31500
+  * Update for the new netbase/inetd stuff.
+    (Closes: #43161, #44537, #44529, #31500)
   * Depend on an appropriate netbase version because of the switch to
-    diverting /etc/init.d/inetd, and not diverting /usr/sbin/update-inetd. 
+    diverting /etc/init.d/inetd, and not diverting /usr/sbin/update-inetd.
   * Un-diverting is done in a sane way, I think. Postinst checks whether the
     exact diversion still exists, and preserves the obsolete scripts, with
     suffix ".xinetd.old", and then removes the diversion. The obsolete files
     made this way are "rm -f"ed in postrm.
-  * Updated for Policy 3.x. Converted to debhelper for full Policy
-    compliance. Fixes: #44099
-  * Added rm -f /etc/xinetd.conf under purging in postrm, fixes: #36809
-  * Included Solar Designer <solar@false.com>'s SD1 patch from:
-    ftp://ftp.dataforce.net/pub/solar/xinetd-2.2.1-SD1.diff , fixes: #35166
-  * Reworked most of the maintainer scripts.
+  * Update for Debian Policy 3.x. Converte to debhelper for full Policy
+    compliance. (Closes: #44099)
+  * Add rm -f /etc/xinetd.conf in purging of postrm. (Closes: #36809)
+  * Apply large patch by <solar@false.com> for the following changes: (Closes: 35166)
+    - Supplementary groups are now dropped by default instead of setting
+      them according to /etc/group. The old behavior was dangerous, as root
+      is usually a member of multiple groups and some daemons don't reset
+      them even when dropping to the authenticated user.
+    - On a SIGHUP, writes to /var/run/xinetd.dump, not /tmp/xinetd.dump.
+    - A theoretical race condition is fixed.
+    - Per-source-address session count limits, separate for each service.
+      The option is "per_source" (works in the defaults section, too). Its
+      usage is similar to the "instances" option.
+    - New option for services: "groups = yes" can be used to enable the
+      old behavior for supplementary groups.
+    - The ability to pass server arguments starting with argv[0], via the
+      added "server_args0" option.
+  * Rework most of the maintainer scripts.
   * The checkportmap() function, from the inetd's init script ought to
     be changed to check in /etc/xinetd.conf file.
-  * Beautified debian/README* files, fixed some oddities in "SEE ALSO"
+  * Improve debian/README* files, fixed some oddities in "SEE ALSO"
     sections of the man pages.
   * If this release doesn't break anything, I'll probably upload the newest
     upstream version, from the alive branch.
@@ -519,121 +575,120 @@ xinetd (2.2.1-8.SD1.1) unstable; urgency=medium
 
 xinetd (2.2.1-8) frozen unstable; urgency=high
 
-  * Bug #29951, Applied itox patch by Alain Nissen <Alain.Nissen@ulg.ac.be>,
-    it fixes two problems with itox.  It now understands user.group
-    notation, and ignores (no)wait.max.
-  * Bug #29650, changed a /* */ comment in preinst to a bash # comment :)
-  * Bug #29945, typo in the itox man page.
-  * Bug 29648, slattach is no longer killed when xinetd is stopped.
-  * Fixed a /tmp security problem which occured when xinetd was sent the
-    HUP signal (patch from Bugtraq by Marc Heuse <marc@SUSE.DE> slightly 
+  * Apply itox patch by Alain Nissen <Alain.Nissen@ulg.ac.be>,
+    it fixes two problems with itox. It now understands the user.group
+    notation, and ignores (no)wait.max. (Closes: #29951)
+  * Fix commenting syntax in preinst (/* */ -> #). (Closes: #29650)
+  * Fix typo in the itox man page. (Closes: #29945)
+  * slattach is no longer killed when xinetd is stopped. (Closes: #29648)
+  * Fix a /tmp security problem which occured when xinetd was sent the
+    HUP signal (patch from Bugtraq by Marc Heuse <marc@SUSE.DE> slightly
     modified by me).
 
  -- Norbert Veber <nveber@debian.org>  Sat,  5 Dec 1998 02:27:54 -0500
 
 xinetd (2.2.1-7) unstable; urgency=low
 
-  * Fixed a spelling mistake in the change log :)
-  * Fixed #26546, a problem with postinst and the file-rc package
+  * Fix spelling in changelog.
+  * Adress an issue with the postinst and file-rc. (Closes: #26546)
 
  -- Norbert Veber <nveber@debian.org>  Sat, 10 Oct 1998 00:46:13 -0400
 
 xinetd (2.2.1-6) unstable; urgency=low
 
-  * Fixed #24246, debian/files and debian/substvars is no longer included
-    with the deb.
-  * Fixed #24245.  This closes a security hole and policy violation in the
-    build process, also changed to -O2 while compiling.
-  * Fixes bug 23866 by diverting on both upgrade and install.
+  * debian/files and debian/substvars are no longer included
+    in the package. (Closes: #24246)
+  * Fix a vulnerability and a policy violation in the build process,
+    also change to -O2 while compiling. (Closes: #24245)
+  * Divert on both upgrade and install. (Closes: #23866)
 
  -- Norbert Veber <nveber@debian.org>  Sat, 25 Jul 1998 14:18:39 -0400
 
 xinetd (2.2.1-5) frozen unstable; urgency=low
 
-  * Changed all scripts that stop xinetd so that they use SIGQUIT to kill the
-    server.  SIGTERM is the default, and this causes xinetd to kill all
+  * Change all scripts that stop xinetd so that they use SIGQUIT to kill the
+    server. SIGTERM is the default, and this causes xinetd to kill all
     child processes, which makes remote installation/maintenance impossible.
-  * Changed postrm so that it calls update-rc.d with the -f option (in case
+  * Change postrm so that it calls update-rc.d with the -f option (in case
     /etc/init.d/xinetd is still present.
-  * changed prerm so that it stops /sbin/portmap instead of
-    /usr/sbin/rpc.portmap (which doesnt exist)
-  * Wrote a man page for itox
-  * Fixed /etc/init.d/xinetd reload/restart
-  * Added /etc/init.d/xinetd to list of conffiles
+  * Change prerm so that it stops /sbin/portmap instead of
+    /usr/sbin/rpc.portmap (which doesn't exist).
+  * Add a man page for itox.
+  * Fix /etc/init.d/xinetd reload/restart.
+  * Add /etc/init.d/xinetd to list of conffiles.
 
  -- Norbert Veber <nveber@debian.org>  Sat, 13 Jun 1998 20:54:58 -0400
 
 xinetd (2.2.1-4) frozen unstable; urgency=medium
 
-  * New developer
-  * Diverted /etc/init.d/netbase, fixes bug #19125
-  * /etc/init.d/xinetd now refers to itself by $0, bug #6860
-  * /etc/init.d/xinetd now looks for /sbin/portmap, bug #12021, #12047,
-    #14159, #17247, #18691, #20701, #22161
-  * Diverted /usr/sbin/update-inetd, the new update-inetd now tells the user
-    to manually edit /etc/xinetd.conf.  A new update-inetd that changes
+  * New maintainer.
+  * Divert /etc/init.d/netbase. (Closes: #19125)
+  * /etc/init.d/xinetd now refers to itself by $0. (Closes: #6860)
+  * /etc/init.d/xinetd now looks for /sbin/portmap.
+    (Closes: #12021, #12047, #14159, #17247, #18691, #20701, #22161)
+  * Divert /usr/sbin/update-inetd, the new update-inetd now tells the user
+    to manually edit /etc/xinetd.conf. A new update-inetd that changes
     the xinetd.conf will eventually be created.
-  * Created /usr/doc/xinetd/README-update.inetd which describes the above,
+  * Create /usr/doc/xinetd/README-update.inetd which describes the above,
     and gives pointers on what to put into xinetd.conf.
-  * Moved back to main (xinetd is free)
-  * Included ORIGINAL copyright, as is required by the license.  
+  * Move back to main from non-free since xinetd is now free.
+  * Include ORIGINAL copyright, as is required by the license.
     It is in /usr/doc/xinetd/copyright.
-  * Created /usr/doc/README.samba which describes a fix/workaround to the
-    xinetd/nmdb bug (#20705 and #17907).
-  * No longer provides a default xinetd.conf.  It is nearly impossible to
+  * Create /usr/doc/README.samba which describes a fix/workaround to the
+    xinetd/nmdb bug (Closes: #20705, #17907).
+  * No longer provides a default xinetd.conf. It is nearly impossible to
     generate one that will work on all systems, and still provides
-    useful services.  The user now has the choice of keeping the current
-    configuration, or converting inetd.conf.
-    This fixes half of bug #10059. :)
+    useful services. The user now has the choice of keeping the current
+    configuration, or converting inetd.conf. (Closes: #10059)
 
  -- Norbert Veber <nveber@debian.org>  Tue, 9 June 1998 22:18:25 -0500
 
-xinetd (2.2.1-3.1) non-free; urgency=low
+xinetd (2.2.1-3.1) unstable; urgency=low
 
   * Developer back to Boris.
 
  -- Adam Heath <adam.heath@usa.net>  Sun, 15 Mar 1998 15:33:59 -0500
 
-xinetd (2.2.1-3) non-free; urgency=low
+xinetd (2.2.1-3) unstable; urgency=low
 
-  * Changed distribution.
-  * Bug#16310 fixed previously.
+  * Change distribution to non-free.
+  * Fix bug #16310. (Closes: #16310)
 
  -- Adam Heath <adam.heath@usa.net>  Sat, 14 Mar 1998 03:31:50 -0500
 
 xinetd (2.2.1-2) unstable; urgency=low
 
-  * Fixes lintian bugs.
+  * Fix lintian bugs.
 
  -- Adam Heath <adam.heath@usa.net>  Mon,  9 Mar 1998 19:33:00 -0500
 
 xinetd (2.2.1-1) unstable; urgency=low
 
-  * New upstream version
+  * New upstream release.
 
  -- Adam Heath <adam.heath@usa.net>  Wed, 31 Dec 1997 02:53:10 -0500
 
 xinetd (2.1.7-3.1) unstable; urgency=low
 
-  * Compiled for libc6
+  * Build against libc6.
 
  -- Adam Heath <adam.heath@usa.net>  Tue, 30 Dec 1997 17:50:01 -0500
 
 xinetd (2.1.7-3) unstable; urgency=low
 
-   Changed preinst to ask if xinetd will be 
-    set up to load at boot time.
+   * Modify preinst to ask whether xinetd will be set up
+     to load at boot time.
 
  -- "Boris D. Beletsky" <borik@isracom.co.il>  Tue, 31 Oct 1996 23:13:34 +0200
 
 xinetd (2.1.7-2) unstable; urgency=low
 
-   fixed bug #5022 (thks to llucius@millcomm.com)
+   * Fix FTBFS on non-i386 architectures. (Closes: #5022)
 
  -- "Boris D. Beletsky" <borik@isracom.co.il>  Tue, 29 Oct 1996 03:23:24 +0200
 
 xinetd (2.1.7-1) unstable; urgency=low
 
-   * first release
+   * Initial release.
 
  -- "Boris D. Beletsky" <borik@isracom.co.il>  Sun, 23 Oct 1996 07:45:14 +0200
