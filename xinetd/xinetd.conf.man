@@ -3,7 +3,7 @@
 .\"All rights reserved.  The file named COPYRIGHT specifies the terms 
 .\"and conditions for redistribution.
 .\"
-.\" $Id: xinetd.conf.man,v 1.18 2005/10/05 17:15:33 bbraun Exp $
+.\" $Id: xinetd.conf.man,v 1.20 2007-09-20 14:58:27 bbraun Exp $
 .TH XINETD.CONF 5 "14 June 2001"
 .\" *************************** NAME *********************************
 .SH NAME
@@ -123,6 +123,8 @@ This disables internal calling of the tcpwrap library to determine access
 to the service.  This may be needed in order to use libwrap functionality
 not available to long-running processes such as xinetd; in this case,
 the tcpd program can be called explicitly (see also the NAMEINARGS flag).
+For RPC services using TCP transport, this flag is automatically turned on,
+because xinetd cannot get remote host address information for the rpc port.
 .TP
 .B SENSOR
 This replaces the service with a sensor that detects accesses to the 
@@ -142,6 +144,9 @@ Sets the service to be an IPv4 service (AF_INET).
 .TP
 .B IPv6
 Sets the service to be an IPv6 service (AF_INET6), if IPv6 is available on the system.
+.TP
+.B LABELED
+The LABELED flag will tell xinetd to change the child processes SE Linux context to match that of the incoming connection as it starts the service. This only works for external tcp non-waiting servers and is an error if applied to an internal, udp, or tcp-wait server.
 .TP
 .B REUSE
 The REUSE flag is deprecated.  All services now implicitly use the REUSE flag.
@@ -1221,6 +1226,10 @@ If the
 flag is not used,
 access control on the address of the remote host is not performed when
 \fIwait\fP is \fIyes\fP and \fIsocket_type\fP is \fIstream\fP.
+.LP
+The NOLIBWRAP flag is automatically turned on for RPC services whose
+\fIsocket_type\fP is \fIstream\fP because xinetd cannot determine the
+address of the remote host.
 .LP
 If the 
 .B INTERCEPT

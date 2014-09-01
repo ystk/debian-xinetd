@@ -6,7 +6,7 @@
 
 
 /*
- * $Id: sioconf.h,v 1.3 2003/03/09 19:27:07 steveg Exp $
+ * $Id: sioconf.h,v 1.3 2003-03-09 19:27:07 steveg Exp $
  */
 
 /*

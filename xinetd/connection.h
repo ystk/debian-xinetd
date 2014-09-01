@@ -9,7 +9,7 @@
 #define CONNECTION_H
 
 /*
- * $Id: connection.h,v 1.4 2003/06/23 13:46:37 steveg Exp $
+ * $Id: connection.h,v 1.4 2003-06-23 13:46:37 steveg Exp $
  */
 
 #include "config.h"

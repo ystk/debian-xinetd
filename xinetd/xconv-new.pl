@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# $RCSid = "$Id: xconv-new.pl,v 1.2 2003/02/27 22:16:54 steveg Exp $";
+# $RCSid = "$Id: xconv-new.pl,v 1.2 2003-02-27 22:16:54 steveg Exp $";
 
 use strict;
 

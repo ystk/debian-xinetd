@@ -9,7 +9,7 @@
 #define SERVER_H
 
 /*
- * $Id: server.h,v 1.2 2003/08/06 06:12:10 bbraun Exp $
+ * $Id: server.h,v 1.2 2003-08-06 06:12:10 bbraun Exp $
  */
 
 #include "config.h"

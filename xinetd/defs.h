@@ -9,7 +9,7 @@
 #define DEFS_H
 
 /*
- * $Id: defs.h,v 1.3 2005/03/29 15:50:34 bbraun Exp $
+ * $Id: defs.h,v 1.4 2007-09-20 17:01:52 bbraun Exp $
  */
 
 
@@ -53,6 +53,9 @@ union xsockaddr {
 #define SA( p )               ( (struct sockaddr *) (p) )
 #define SAIN( p )             ( (struct sockaddr_in *) (p) )
 #define SAIN6( p )            ( (struct sockaddr_in6 *) (p) )
+#define CSA( p )              ( (const struct sockaddr *) (p) )
+#define CSAIN( p )            ( (const struct sockaddr_in *) (p) )
+#define CSAIN6( p )           ( (const struct sockaddr_in6 *) (p) )
 #define NEW( type )           (type *) malloc( sizeof( type ) )
 #define FREE( p )             (void) free( (char *)(p) )
 

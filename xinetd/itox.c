@@ -5,7 +5,7 @@
  * and conditions for redistribution.
  */
 
-static char RCSid[] = "$Id: itox.c,v 1.3 2003/06/23 21:13:36 steveg Exp $" ;
+static char RCSid[] = "$Id: itox.c,v 1.4 2007-09-20 17:13:24 bbraun Exp $" ;
 
 #include "config.h"
 #define EQ( s1, s2 )				( strcmp( s1, s2 ) == 0 )
@@ -48,7 +48,7 @@ int main(int argc, char *argv[] )
 {
 	char *s ;
 	int uses_tcpd ;
-	char *daemon_dirpath = "" ;
+	char *daemon_dirpath = NULL ;
 
 	if ( argc != 1 && argc != 3 )
 	{

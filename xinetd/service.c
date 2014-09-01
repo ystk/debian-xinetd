@@ -176,6 +176,9 @@ static status_e activate_rpc( struct service *sp )
    else
       memset( &tsin, 0, sizeof(tsin));
 
+   if ( SC_PROTOVAL ( scp ) == IPPROTO_TCP ) {
+      M_SET ( scp->sc_xflags, SF_NOLIBWRAP );
+   }
    if( SC_IPV4( scp ) ) {
       tsin.sa_in.sin_family = AF_INET ;
       sin_len = sizeof(struct sockaddr_in);
@@ -200,7 +203,7 @@ static status_e activate_rpc( struct service *sp )
       return( FAILED ) ;
    }
    
-   if( tsin.sa.sa_family == AF_INET ) 
+   if( tsin.sa.sa_family == AF_INET )
       SC_SET_PORT( scp, ntohs( tsin.sa_in.sin_port ) ) ;
    else if( tsin.sa.sa_family == AF_INET6 )
       SC_SET_PORT( scp, ntohs( tsin.sa_in6.sin6_port ) ) ;
@@ -300,6 +303,17 @@ static status_e activate_normal( struct service *sp )
       msg( LOG_ERR, func, "bind failed (%m). service = %s", sid ) ;
       return( FAILED ) ;
    }
+
+#ifdef IN_MULTICAST
+   if( SC_IPV4(scp) && IN_MULTICAST(tsin.sa_in.sin_addr.s_addr) ) {
+      struct ip_mreq mreq;
+      mreq.imr_multiaddr.s_addr = tsin.sa_in.sin_addr.s_addr;
+      mreq.imr_interface.s_addr = htonl(INADDR_ANY);
+      setsockopt(sd, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq));
+      if ( debug.on )
+         msg( LOG_DEBUG, func, "Adding multicast membership." );
+   }
+#endif
 
    return( OK ) ;
 }
@@ -607,7 +621,7 @@ static int banner_always( const struct service *sp, const connection_s *cp )
    /* print the banner regardless of access control */
    if ( SC_BANNER(scp) != NULL ) {
       char tmpbuf[TMPSIZE];
-      int retval;
+      ssize_t retval;
       int bannerfd = open(SC_BANNER(scp), O_RDONLY);
 
       if( bannerfd < 0 ) {
@@ -617,7 +631,7 @@ static int banner_always( const struct service *sp, const connection_s *cp )
       }
 
       while( (retval = read(bannerfd, tmpbuf, sizeof(tmpbuf))) ) {
-         if (retval == -1)
+         if (retval == (ssize_t)-1)
          {
             if (errno == EINTR)
                continue;

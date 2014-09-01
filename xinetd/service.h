@@ -19,7 +19,7 @@
 #include "server.h"
 
 /*
- * $Id: service.h,v 1.5 2005/03/29 15:50:34 bbraun Exp $
+ * $Id: service.h,v 1.6 2012-05-09 15:40:29 bbraun Exp $
  */
 
 
@@ -92,6 +92,7 @@ struct service
 #define SVC_IS_TCPMUX( sp )      ( SC_IS_TCPMUX( SVC_CONF ( sp ) ) )
 
 #define TCPMUX_ACK "+Go\r\n"
+#define TCPMUX_NOT_FOUND "-Service name not found\r\n"
 /*
  * Predicate checking macros
  */

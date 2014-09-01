@@ -9,7 +9,7 @@
 #define ATTR_H
 
 /*
- * $Id: attr.h,v 1.3 2005/10/05 17:15:33 bbraun Exp $
+ * $Id: attr.h,v 1.3 2005-10-05 17:15:33 bbraun Exp $
  */
 
 /*

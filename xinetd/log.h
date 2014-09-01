@@ -14,7 +14,7 @@
 #include "access.h"
 
 /*
- * $Id: log.h,v 1.2 2003/05/08 14:52:24 steveg Exp $
+ * $Id: log.h,v 1.2 2003-05-08 14:52:24 steveg Exp $
  */
 
 /*
